@@ -9,5 +9,5 @@ export class User {
   @Column({ length: 500 })
   password: string;
   @Column({ type: 'date' })
-  dateofbirth: Date;
+  dateOfBirth: Date;
 }
