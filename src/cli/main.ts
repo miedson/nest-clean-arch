@@ -16,7 +16,7 @@ program
     const connection = new PgPromise();
     const userRository = new UserRepositorySql(connection);
     const createAccount = new CreateAccount(userRository);
-    const result = await createAccount.execute({
+    await createAccount.execute({
       username,
       password,
       dateofbirth: new Date(dateofbirth),
