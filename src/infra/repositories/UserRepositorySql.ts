@@ -9,7 +9,7 @@ export default class UserRepositorySql implements UserRepository {
   }
   async save(user: User): Promise<void> {
     await this.connection.query(
-      'insert into "user" (id, username, password, "dateOfBirth") values ($1, $2, $3, $4)',
+      'insert into "user" (id, username, password, dateofbirth) values ($1, $2, $3, $4)',
       [
         user.getId(),
         user.getUsername(),

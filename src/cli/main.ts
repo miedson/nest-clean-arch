@@ -21,9 +21,6 @@ program
       password,
       dateofbirth: new Date(dateofbirth),
     });
-    if (result) {
-      console.log("Created");
-    }
   });
 
 program.parse(process.argv);
