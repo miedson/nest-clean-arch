@@ -4,10 +4,10 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 export class User {
   @PrimaryColumn()
   id: string;
-  @Column({ length: 500 })
+  @Column({ length: 500, unique: true })
   username: string;
   @Column({ length: 500 })
   password: string;
   @Column({ type: 'date' })
-  dateOfBirth: Date;
+  dateofbirth: Date;
 }

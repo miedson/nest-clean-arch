@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserPayloadJwt } from './dto/user-payload-jwt.dto';
-import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import Password from '../../../domain/entities/Password';
 
 @Injectable()
 export class AuthService {
@@ -31,7 +31,8 @@ export class AuthService {
         HttpStatus.UNAUTHORIZED,
       );
     }
-    const isValid = await bcrypt.compare(password, user.getPassword());
+    const passwordDomain = new Password(user.getPassword());
+    const isValid = await passwordDomain.verify(password);
     if (!isValid) {
       throw new HttpException(
         'username or password incorrect',

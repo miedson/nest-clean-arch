@@ -16,11 +16,16 @@ export class UsersService implements UserRepository {
     await this.userRepository.save(userEntityDB);
   }
   async getUser(userName: string): Promise<User> {
-    const { id, username, password, dateOfBirth } =
+    const { id, username, password, dateofbirth } =
       await this.userRepository.findOne({
         where: { username: userName },
       });
-    return User.buildExistingUser(id, username, password, dateOfBirth);
+    return User.buildExistingUser(
+      id,
+      username,
+      password,
+      new Date(dateofbirth),
+    );
   }
   async getAll(): Promise<User[]> {
     const users: User[] = [];
@@ -31,7 +36,7 @@ export class UsersService implements UserRepository {
           user.id,
           user.username,
           user.password,
-          new Date(user.dateOfBirth),
+          new Date(user.dateofbirth),
         ),
       );
     }
