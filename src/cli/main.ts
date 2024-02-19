@@ -28,13 +28,17 @@ program
   .action(async () => {
     const getAllAccounts = new GetAllAccounts(userRository);
     const accounts = await getAllAccounts.execute();
-    console.log('Usuários cadastrados:');
-    accounts.forEach(account => {
-      console.log('');
-      console.log(`ID: ${account.id}`);
-      console.log(`Username: ${account.username}`);
-      console.log(`Data de nascimento: ${account.dateofbirth.toLocaleDateString('pt-br')}`);
-    });
+    if(accounts.length > 0) {
+      console.log('Usuários cadastrados:');
+      accounts.forEach(account => {
+        console.log('');
+        console.log(`ID: ${account.id}`);
+        console.log(`Username: ${account.username}`);
+        console.log(`Data de nascimento: ${account.dateofbirth.toLocaleDateString('pt-br')}`);
+      });
+      return;
+    }
+    console.log('Nenhum usuário cadastrado.');
   });
 
 program.parse(process.argv);
